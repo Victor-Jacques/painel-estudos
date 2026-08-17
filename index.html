@@ -48,50 +48,63 @@
       <p><b>Segurança da Informação</b>, <b>Atualidades e IA</b> e <b>Língua Portuguesa</b> são as mais extensas — cada uma ocupa um dia inteiro (2h) sozinha. <b>Legislação</b> divide o dia com <b>Gestão e Governança de TI</b> (conteúdo de peso parecido). <b>Raciocínio Lógico</b> divide com <b>Inteligência de Negócios (BI)</b> na sexta — como você já revisou Raciocínio antes, o tempo pesa mais pra ele mesmo assim, mas passa rápido. <b>Banco de Dados</b> ficou sozinha no domingo, com 1h de estudo + 30min de exercícios.</p>
     </div>
 
-    <div class="cycle">
-      <h2>Ciclo semanal</h2>
-      <div class="cycle-row">
-        <div class="cycle-node">
-          <div class="cycle-day">Seg</div>
-          <div class="cycle-subj">Segurança da Informação</div>
-          <div class="cycle-time">2h</div>
+    <!-- ===================== GERENCIAMENTO DE CICLO SEMANAL ===================== -->
+    <div id="ciclo-semanal-container" class="card" style="margin-bottom: 24px;">
+      
+      <!-- MODO LEITURA -->
+      <div id="ciclo-leitura">
+        <h2>
+          Ciclo Semanal 
+          <button id="btn-editar-ciclo" class="ghost" style="float:right; padding: 4px 8px; font-size: 12px; cursor: pointer;">
+            ⚙️ Editar Ciclo Semanal
+          </button>
+        </h2>
+        
+        <!-- Container onde a lista de matérias será renderizada pelo JS -->
+        <div id="lista-ciclo-leitura" style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+          <p>Carregando rotina...</p>
         </div>
-        <div class="cycle-arrow">→</div>
-        <div class="cycle-node">
-          <div class="cycle-day">Ter</div>
-          <div class="cycle-subj">Atualidades e IA</div>
-          <div class="cycle-time">2h</div>
-        </div>
-        <div class="cycle-arrow">→</div>
-        <div class="cycle-node">
-          <div class="cycle-day">Qua</div>
-          <div class="cycle-subj">Língua Portuguesa</div>
-          <div class="cycle-time">2h</div>
-        </div>
-        <div class="cycle-arrow">→</div>
-        <div class="cycle-node">
-          <div class="cycle-day">Qui</div>
-          <div class="cycle-subj">Legislação + Gestão/Governança</div>
-          <div class="cycle-time">1h + 1h</div>
-        </div>
-        <div class="cycle-arrow">→</div>
-        <div class="cycle-node">
-          <div class="cycle-day">Sex</div>
-          <div class="cycle-subj">Raciocínio Lógico + BI</div>
-          <div class="cycle-time">1h20 + 40min</div>
-        </div>
-        <div class="cycle-arrow">→</div>
-        <div class="cycle-node">
-          <div class="cycle-day">Sáb</div>
-          <div class="cycle-subj">Desenvolvimento de Sistemas</div>
-          <div class="cycle-time">1h</div>
-        </div>
-        <div class="cycle-arrow">→</div>
-        <div class="cycle-node">
-          <div class="cycle-day">Dom</div>
-          <div class="cycle-subj">Banco de Dados</div>
-          <div class="cycle-time">1h</div>
-        </div>
+      </div>
+
+      <!-- MODO EDIÇÃO -->
+      <div id="ciclo-edicao" style="display: none;">
+        <h2>Editar Ciclo Semanal</h2>
+        
+        <form id="form-ciclo" style="display:flex; flex-direction:column; gap:12px; margin-top: 16px;">
+          <div>
+            <label>Segunda-feira</label>
+            <input type="text" id="input-segunda" required>
+          </div>
+          <div>
+            <label>Terça-feira</label>
+            <input type="text" id="input-terca" required>
+          </div>
+          <div>
+            <label>Quarta-feira</label>
+            <input type="text" id="input-quarta" required>
+          </div>
+          <div>
+            <label>Quinta-feira</label>
+            <input type="text" id="input-quinta" required>
+          </div>
+          <div>
+            <label>Sexta-feira</label>
+            <input type="text" id="input-sexta" required>
+          </div>
+          <div>
+            <label>Sábado</label>
+            <input type="text" id="input-sabado" required>
+          </div>
+          <div>
+            <label>Domingo</label>
+            <input type="text" id="input-domingo" required>
+          </div>
+
+          <div style="display:flex; gap: 8px; margin-top: 8px;">
+            <button type="button" id="btn-cancelar-ciclo" class="danger">Cancelar</button>
+            <button type="submit" id="btn-salvar-ciclo">Salvar Novo Ciclo</button>
+          </div>
+        </form>
       </div>
     </div>
 

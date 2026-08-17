@@ -202,12 +202,13 @@ async function initApp(){
   await loadEntries();
   if(storageOk) setStatus('', false);
   render();
+  await carregarCicloSemanal();
 }
 
 // 1. Importações via CDN (compatíveis direto com o navegador)
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-  import { getFirestore, collection, addDoc, getDocs, serverTimestamp, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { getFirestore, collection, addDoc, getDocs, serverTimestamp, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
   import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
   // 2. Importando a configuração separada do Firebase
@@ -275,3 +276,104 @@ async function initApp(){
   document.getElementById('btn-logout').addEventListener('click', () => {
     signOut(auth);
   });
+
+// =========================================================================
+// LÓGICA DO CICLO SEMANAL (LEITURA E EDIÇÃO)
+// =========================================================================
+
+const cicloDocRef = doc(db, "configuracoes", "ciclo_semanal");
+
+const cicloLeituraContainer = document.getElementById("ciclo-leitura");
+const cicloEdicaoContainer = document.getElementById("ciclo-edicao");
+const listaCicloLeitura = document.getElementById("lista-ciclo-leitura");
+const btnEditarCiclo = document.getElementById("btn-editar-ciclo");
+const btnCancelarCiclo = document.getElementById("btn-cancelar-ciclo");
+const formCiclo = document.getElementById("form-ciclo");
+
+const inputsCiclo = {
+  segundaFeira: document.getElementById("input-segunda"),
+  tercaFeira: document.getElementById("input-terca"),
+  quartaFeira: document.getElementById("input-quarta"),
+  quintaFeira: document.getElementById("input-quinta"),
+  sextaFeira: document.getElementById("input-sexta"),
+  sabado: document.getElementById("input-sabado"),
+  domingo: document.getElementById("input-domingo")
+};
+
+let dadosCicloAtual = {};
+
+window.carregarCicloSemanal = async function() {
+  try {
+    const docSnap = await getDoc(cicloDocRef);
+    if (docSnap.exists()) {
+      dadosCicloAtual = docSnap.data();
+      
+      listaCicloLeitura.innerHTML = `
+        <div style="padding: 6px; border-bottom: 1px solid var(--line);"><strong>Segunda-feira:</strong> ${dadosCicloAtual.segundaFeira || '-'}</div>
+        <div style="padding: 6px; border-bottom: 1px solid var(--line);"><strong>Terça-feira:</strong> ${dadosCicloAtual.tercaFeira || '-'}</div>
+        <div style="padding: 6px; border-bottom: 1px solid var(--line);"><strong>Quarta-feira:</strong> ${dadosCicloAtual.quartaFeira || '-'}</div>
+        <div style="padding: 6px; border-bottom: 1px solid var(--line);"><strong>Quinta-feira:</strong> ${dadosCicloAtual.quintaFeira || '-'}</div>
+        <div style="padding: 6px; border-bottom: 1px solid var(--line);"><strong>Sexta-feira:</strong> ${dadosCicloAtual.sextaFeira || '-'}</div>
+        <div style="padding: 6px; border-bottom: 1px solid var(--line);"><strong>Sábado:</strong> ${dadosCicloAtual.sabado || '-'}</div>
+        <div style="padding: 6px;"><strong>Domingo:</strong> ${dadosCicloAtual.domingo || '-'}</div>
+      `;
+    } else {
+      listaCicloLeitura.innerHTML = "<p>Nenhum ciclo configurado encontrado no banco.</p>";
+    }
+  } catch (error) {
+    console.error("Erro ao carregar o ciclo semanal:", error);
+    listaCicloLeitura.innerHTML = "<p>Erro ao carregar o ciclo.</p>";
+  }
+}
+
+if (btnEditarCiclo) {
+  btnEditarCiclo.addEventListener('click', () => {
+    inputsCiclo.segundaFeira.value = dadosCicloAtual.segundaFeira || '';
+    inputsCiclo.tercaFeira.value = dadosCicloAtual.tercaFeira || '';
+    inputsCiclo.quartaFeira.value = dadosCicloAtual.quartaFeira || '';
+    inputsCiclo.quintaFeira.value = dadosCicloAtual.quintaFeira || '';
+    inputsCiclo.sextaFeira.value = dadosCicloAtual.sextaFeira || '';
+    inputsCiclo.sabado.value = dadosCicloAtual.sabado || '';
+    inputsCiclo.domingo.value = dadosCicloAtual.domingo || '';
+
+    cicloLeituraContainer.style.display = 'none';
+    cicloEdicaoContainer.style.display = 'block';
+  });
+}
+
+if (btnCancelarCiclo) {
+  btnCancelarCiclo.addEventListener('click', () => {
+    cicloEdicaoContainer.style.display = 'none';
+    cicloLeituraContainer.style.display = 'block';
+  });
+}
+
+if (formCiclo) {
+  formCiclo.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const novosDados = {
+      segundaFeira: inputsCiclo.segundaFeira.value,
+      tercaFeira: inputsCiclo.tercaFeira.value,
+      quartaFeira: inputsCiclo.quartaFeira.value,
+      quintaFeira: inputsCiclo.quintaFeira.value,
+      sextaFeira: inputsCiclo.sextaFeira.value,
+      sabado: inputsCiclo.sabado.value,
+      domingo: inputsCiclo.domingo.value
+    };
+
+    try {
+      await updateDoc(cicloDocRef, novosDados);
+      
+      cicloEdicaoContainer.style.display = 'none';
+      cicloLeituraContainer.style.display = 'block';
+      
+      await carregarCicloSemanal();
+      
+      alert("Ciclo semanal salvo com sucesso!");
+    } catch (error) {
+      console.error("Erro ao salvar ciclo:", error);
+      alert("Erro ao salvar as configurações. Verifique o console.");
+    }
+  });
+}
