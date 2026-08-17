@@ -1,288 +1,320 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plano de Estudos — Concurso Dataprev</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="plano_estudos.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plano de Estudos — Concurso Dataprev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="plano_estudos.css">
 </head>
+
 <body>
-<div id="login-section" class="card" style="max-width: 400px; margin: 100px auto; display: none;">
-  <h2 style="text-align:center; justify-content:center; display:flex; margin-bottom: 20px;">Acesso Restrito</h2>
-  <form id="login-form" style="display:flex; flex-direction:column; gap:12px;">
-    <div>
-      <label>E-mail</label>
-      <input type="email" id="login-email" required>
-    </div>
-    <div>
-      <label>Senha</label>
-      <input type="password" id="login-password" required>
-    </div>
-    <button type="submit" style="margin-top: 10px; width: 100%;">Entrar</button>
-    <div id="login-error" class="status-msg err" style="text-align:center; margin-top: 10px;"></div>
-  </form>
-</div>
-
-<div class="wrap" id="app-wrap" style="display: none;">
-
-  <div class="eyebrow">
-    Preparação · Concurso Dataprev — Desenvolvimento de Software
-    <button id="btn-logout" class="danger" style="float:right; padding:3px 8px; font-size:10px; cursor:pointer;">Sair</button>
-  </div>
-  <h1>Plano de Estudos</h1>
-  <p class="sub">Duas ferramentas em um só lugar: a rotina semanal fixa (o que estudar em cada dia) e o rastreador de revisão espaçada (quando revisar cada tópico específico, em 1/3/7/15 dias).</p>
-
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="rotina">Rotina Semanal</button>
-    <button class="tab-btn" data-tab="revisao">Revisão Espaçada</button>
+  <div id="login-section" class="card" style="max-width: 400px; margin: 100px auto; display: none;">
+    <h2 style="text-align:center; justify-content:center; display:flex; margin-bottom: 20px;">Acesso Restrito</h2>
+    <form id="login-form" style="display:flex; flex-direction:column; gap:12px;">
+      <div>
+        <label>E-mail</label>
+        <input type="email" id="login-email" required>
+      </div>
+      <div>
+        <label>Senha</label>
+        <input type="password" id="login-password" required>
+      </div>
+      <button type="submit" style="margin-top: 10px; width: 100%;">Entrar</button>
+      <div id="login-error" class="status-msg err" style="text-align:center; margin-top: 10px;"></div>
+    </form>
   </div>
 
-  <!-- ===================== TAB: ROTINA ===================== -->
-  <div class="tab-panel active" id="tab-rotina">
+  <div class="wrap" id="app-wrap" style="display: none;">
 
-    <div class="callout">
-      <h2>Como as matérias foram distribuídas</h2>
-      <p>É um ciclo fixo: a mesma matéria sempre no mesmo dia, toda semana, até a prova. As 9 matérias do edital foram encaixadas nos 7 dias da semana, usando o volume de conteúdo de cada uma como critério:</p>
-      <p><b>Segurança da Informação</b>, <b>Atualidades e IA</b> e <b>Língua Portuguesa</b> são as mais extensas — cada uma ocupa um dia inteiro (2h) sozinha. <b>Legislação</b> divide o dia com <b>Gestão e Governança de TI</b> (conteúdo de peso parecido). <b>Raciocínio Lógico</b> divide com <b>Inteligência de Negócios (BI)</b> na sexta — como você já revisou Raciocínio antes, o tempo pesa mais pra ele mesmo assim, mas passa rápido. <b>Banco de Dados</b> ficou sozinha no domingo, com 1h de estudo + 30min de exercícios.</p>
+    <div class="eyebrow">
+      Preparação · Concurso Dataprev — Desenvolvimento de Software
+      <button id="btn-logout" class="danger"
+        style="float:right; padding:3px 8px; font-size:10px; cursor:pointer;">Sair</button>
+    </div>
+    <h1>Plano de Estudos</h1>
+    <p class="sub">Duas ferramentas em um só lugar: a rotina semanal fixa (o que estudar em cada dia) e o rastreador de
+      revisão espaçada (quando revisar cada tópico específico, em 1/3/7/15 dias).</p>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="rotina">Rotina Semanal</button>
+      <button class="tab-btn" data-tab="revisao">Revisão Espaçada</button>
     </div>
 
-    <!-- ===================== GERENCIAMENTO DE CICLO SEMANAL ===================== -->
-    <div id="ciclo-semanal-container" class="card" style="margin-bottom: 24px;">
-      
-      <!-- MODO LEITURA -->
-      <div id="ciclo-leitura">
-        <h2>
-          Ciclo Semanal 
-          <button id="btn-editar-ciclo" class="ghost" style="float:right; padding: 4px 8px; font-size: 12px; cursor: pointer;">
-            ⚙️ Editar Ciclo Semanal
-          </button>
-        </h2>
-        
-        <!-- Container onde a lista de matérias será renderizada pelo JS -->
-        <div id="lista-ciclo-leitura" style="margin-top: 16px;">
-          <div class="day-card">
-            <div class="day-head"><span class="day-name">Segunda-feira</span><span class="day-total">2h30 total</span></div>
-            <div class="day-body">
-              <div class="block study">
-                <div class="block-label">Estudo · 2h</div>
-                <div class="block-title" id="materia-estudo-segunda">Carregando...</div>
+    <!-- ===================== TAB: ROTINA ===================== -->
+    <div class="tab-panel active" id="tab-rotina">
+      <!-- ===================== GERENCIAMENTO DE CICLO SEMANAL ===================== -->
+      <div id="ciclo-semanal-container" class="card" style="margin-bottom: 24px;">
+
+        <!-- MODO LEITURA -->
+        <div id="ciclo-leitura">
+          <h2>
+            Ciclo Semanal
+            <button id="btn-editar-ciclo" class="ghost"
+              style="float:right; padding: 4px 8px; font-size: 12px; cursor: pointer;">
+              ⚙️ Editar Ciclo Semanal
+            </button>
+          </h2>
+
+          <!-- Container onde a lista de matérias será renderizada pelo JS -->
+          <div id="lista-ciclo-leitura" style="margin-top: 16px;">
+            <div class="day-card">
+              <div class="day-head"><span class="day-name">Segunda-feira</span><span class="day-total">2h30 total</span>
               </div>
-              <div class="block exercise">
-                <div class="block-label">Exercícios · 30min</div>
-                <div class="block-title" id="materia-exercicio-segunda">Carregando...</div>
-                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+              <div class="day-body">
+                <div class="block study">
+                  <div class="block-label">Estudo · 2h</div>
+                  <div class="block-title" id="materia-estudo-segunda">Carregando...</div>
+                </div>
+                <div class="block exercise">
+                  <div class="block-label">Exercícios · 30min</div>
+                  <div class="block-title" id="materia-exercicio-segunda">Carregando...</div>
+                  <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens
+                    pendentes/atrasados na aba Revisão Espaçada</div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="day-card">
-            <div class="day-head"><span class="day-name">Terça-feira</span><span class="day-total">2h30 total</span></div>
-            <div class="day-body">
-              <div class="block study">
-                <div class="block-label">Estudo · 2h</div>
-                <div class="block-title" id="materia-estudo-terca">Carregando...</div>
+            <div class="day-card">
+              <div class="day-head"><span class="day-name">Terça-feira</span><span class="day-total">2h30 total</span>
               </div>
-              <div class="block exercise">
-                <div class="block-label">Exercícios · 30min</div>
-                <div class="block-title" id="materia-exercicio-terca">Carregando...</div>
-                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+              <div class="day-body">
+                <div class="block study">
+                  <div class="block-label">Estudo · 2h</div>
+                  <div class="block-title" id="materia-estudo-terca">Carregando...</div>
+                </div>
+                <div class="block exercise">
+                  <div class="block-label">Exercícios · 30min</div>
+                  <div class="block-title" id="materia-exercicio-terca">Carregando...</div>
+                  <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens
+                    pendentes/atrasados na aba Revisão Espaçada</div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="day-card">
-            <div class="day-head"><span class="day-name">Quarta-feira</span><span class="day-total">2h30 total</span></div>
-            <div class="day-body">
-              <div class="block study">
-                <div class="block-label">Estudo · 2h</div>
-                <div class="block-title" id="materia-estudo-quarta">Carregando...</div>
+            <div class="day-card">
+              <div class="day-head"><span class="day-name">Quarta-feira</span><span class="day-total">2h30 total</span>
               </div>
-              <div class="block exercise">
-                <div class="block-label">Exercícios · 30min</div>
-                <div class="block-title" id="materia-exercicio-quarta">Carregando...</div>
-                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+              <div class="day-body">
+                <div class="block study">
+                  <div class="block-label">Estudo · 2h</div>
+                  <div class="block-title" id="materia-estudo-quarta">Carregando...</div>
+                </div>
+                <div class="block exercise">
+                  <div class="block-label">Exercícios · 30min</div>
+                  <div class="block-title" id="materia-exercicio-quarta">Carregando...</div>
+                  <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens
+                    pendentes/atrasados na aba Revisão Espaçada</div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="day-card">
-            <div class="day-head"><span class="day-name">Quinta-feira</span><span class="day-total">2h30 total</span></div>
-            <div class="day-body">
-              <div class="block study">
-                <div class="block-label">Estudo · 1h + 1h</div>
-                <div class="block-title" id="materia-estudo-quinta">Carregando...</div>
+            <div class="day-card">
+              <div class="day-head"><span class="day-name">Quinta-feira</span><span class="day-total">2h30 total</span>
               </div>
-              <div class="block exercise">
-                <div class="block-label">Exercícios · 30min</div>
-                <div class="block-title" id="materia-exercicio-quinta">Carregando...</div>
-                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+              <div class="day-body">
+                <div class="block study">
+                  <div class="block-label">Estudo · 1h + 1h</div>
+                  <div class="block-title" id="materia-estudo-quinta">Carregando...</div>
+                </div>
+                <div class="block exercise">
+                  <div class="block-label">Exercícios · 30min</div>
+                  <div class="block-title" id="materia-exercicio-quinta">Carregando...</div>
+                  <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens
+                    pendentes/atrasados na aba Revisão Espaçada</div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="day-card">
-            <div class="day-head"><span class="day-name">Sexta-feira</span><span class="day-total">2h30 total</span></div>
-            <div class="day-body">
-              <div class="block study">
-                <div class="block-label">Estudo · 1h20 + 40min</div>
-                <div class="block-title" id="materia-estudo-sexta">Carregando...</div>
+            <div class="day-card">
+              <div class="day-head"><span class="day-name">Sexta-feira</span><span class="day-total">2h30 total</span>
               </div>
-              <div class="block exercise">
-                <div class="block-label">Exercícios · 30min</div>
-                <div class="block-title" id="materia-exercicio-sexta">Carregando...</div>
-                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+              <div class="day-body">
+                <div class="block study">
+                  <div class="block-label">Estudo · 1h20 + 40min</div>
+                  <div class="block-title" id="materia-estudo-sexta">Carregando...</div>
+                </div>
+                <div class="block exercise">
+                  <div class="block-label">Exercícios · 30min</div>
+                  <div class="block-title" id="materia-exercicio-sexta">Carregando...</div>
+                  <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens
+                    pendentes/atrasados na aba Revisão Espaçada</div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="day-card">
-            <div class="day-head"><span class="day-name">Sábado</span><span class="day-total">1h30 total</span></div>
-            <div class="day-body">
-              <div class="block study">
-                <div class="block-label">Estudo · 1h</div>
-                <div class="block-title" id="materia-estudo-sabado">Carregando...</div>
-              </div>
-              <div class="block exercise">
-                <div class="block-label">Exercícios · 30min</div>
-                <div class="block-title" id="materia-exercicio-sabado">Carregando...</div>
-                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+            <div class="day-card">
+              <div class="day-head"><span class="day-name">Sábado</span><span class="day-total">1h30 total</span></div>
+              <div class="day-body">
+                <div class="block study">
+                  <div class="block-label">Estudo · 1h</div>
+                  <div class="block-title" id="materia-estudo-sabado">Carregando...</div>
+                </div>
+                <div class="block exercise">
+                  <div class="block-label">Exercícios · 30min</div>
+                  <div class="block-title" id="materia-exercicio-sabado">Carregando...</div>
+                  <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens
+                    pendentes/atrasados na aba Revisão Espaçada</div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="day-card sunday">
-            <div class="day-head"><span class="day-name">Domingo</span><span class="day-total">1h30 total</span></div>
-            <div class="day-body">
-              <div class="block study">
-                <div class="block-label">Estudo · 1h</div>
-                <div class="block-title" id="materia-estudo-domingo">Carregando...</div>
-              </div>
-              <div class="block exercise">
-                <div class="block-label">Exercícios · 30min</div>
-                <div class="block-title" id="materia-exercicio-domingo">Carregando...</div>
-                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+            <div class="day-card sunday">
+              <div class="day-head"><span class="day-name">Domingo</span><span class="day-total">1h30 total</span></div>
+              <div class="day-body">
+                <div class="block study">
+                  <div class="block-label">Estudo · 1h</div>
+                  <div class="block-title" id="materia-estudo-domingo">Carregando...</div>
+                </div>
+                <div class="block exercise">
+                  <div class="block-label">Exercícios · 30min</div>
+                  <div class="block-title" id="materia-exercicio-domingo">Carregando...</div>
+                  <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens
+                    pendentes/atrasados na aba Revisão Espaçada</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- MODO EDIÇÃO -->
+        <div id="ciclo-edicao" style="display: none;">
+          <h2>Editar Ciclo Semanal</h2>
+
+          <form id="form-ciclo" style="display:flex; flex-direction:column; gap:12px; margin-top: 16px;">
+            <div>
+              <label>Segunda-feira</label>
+              <input type="text" id="input-segunda" required>
+            </div>
+            <div>
+              <label>Terça-feira</label>
+              <input type="text" id="input-terca" required>
+            </div>
+            <div>
+              <label>Quarta-feira</label>
+              <input type="text" id="input-quarta" required>
+            </div>
+            <div>
+              <label>Quinta-feira</label>
+              <input type="text" id="input-quinta" required>
+            </div>
+            <div>
+              <label>Sexta-feira</label>
+              <input type="text" id="input-sexta" required>
+            </div>
+            <div>
+              <label>Sábado</label>
+              <input type="text" id="input-sabado" required>
+            </div>
+            <div>
+              <label>Domingo</label>
+              <input type="text" id="input-domingo" required>
+            </div>
+
+            <div style="display:flex; gap: 8px; margin-top: 8px;">
+              <button type="button" id="btn-cancelar-ciclo" class="danger">Cancelar</button>
+              <button type="submit" id="btn-salvar-ciclo">Salvar Novo Ciclo</button>
+            </div>
+          </form>
+        </div>
       </div>
 
-      <!-- MODO EDIÇÃO -->
-      <div id="ciclo-edicao" style="display: none;">
-        <h2>Editar Ciclo Semanal</h2>
-        
-        <form id="form-ciclo" style="display:flex; flex-direction:column; gap:12px; margin-top: 16px;">
-          <div>
-            <label>Segunda-feira</label>
-            <input type="text" id="input-segunda" required>
-          </div>
-          <div>
-            <label>Terça-feira</label>
-            <input type="text" id="input-terca" required>
-          </div>
-          <div>
-            <label>Quarta-feira</label>
-            <input type="text" id="input-quarta" required>
-          </div>
-          <div>
-            <label>Quinta-feira</label>
-            <input type="text" id="input-quinta" required>
-          </div>
-          <div>
-            <label>Sexta-feira</label>
-            <input type="text" id="input-sexta" required>
-          </div>
-          <div>
-            <label>Sábado</label>
-            <input type="text" id="input-sabado" required>
-          </div>
-          <div>
-            <label>Domingo</label>
-            <input type="text" id="input-domingo" required>
-          </div>
+      <footer>
+        <p><b>Dica:</b> o bloco de exercícios de cada dia já foi pensado pra funcionar junto com a aba <b>Revisão
+            Espaçada</b> — a parte de "conteúdo de hoje" fixa o que acabou de ser estudado, e a parte de revisão dá
+          conta dos tópicos que venceram há 1, 3, 7, 15, 30 ou 45 dias, sem você precisar decorar quando revisar o quê.
+        </p>
+        <p style="margin-top:8px;">Modelo semanal fixo — repete-se igual toda semana até a data da prova.</p>
+        <button class="print-btn" onclick="window.print()" style="float:none;margin-top:14px;">Imprimir / Salvar
+          PDF</button>
+      </footer>
+    </div>
 
-          <div style="display:flex; gap: 8px; margin-top: 8px;">
-            <button type="button" id="btn-cancelar-ciclo" class="danger">Cancelar</button>
-            <button type="submit" id="btn-salvar-ciclo">Salvar Novo Ciclo</button>
+    <!-- ===================== TAB: REVISÃO ESPAÇADA ===================== -->
+    <div class="tab-panel" id="tab-revisao">
+
+      <div class="callout">
+        <h2>Revisão espaçada (1 / 3 / 7 / 15 / 30 / 45 dias)</h2>
+        <p>Registre aqui o que você estudou a cada dia. A ferramenta agenda sozinha as revisões em <b>1, 3, 7, 15, 30 e
+            45 dias</b> e te avisa o que revisar. Cada tópico é uma linha independente — assim dá pra misturar matérias
+          diferentes no mesmo dia sem perder o controle. Os dados ficam salvos entre sessões enquanto o artefato estiver
+          publicado; use o backup em .json como reforço.</p>
+      </div>
+
+      <div class="card">
+        <h2>Registrar estudo</h2>
+        <form id="addForm">
+          <div>
+            <label>Matéria</label>
+            <select id="fSubject">
+              <option>Língua Portuguesa</option>
+              <option>Raciocínio Lógico</option>
+              <option>Atualidades e Inteligência Artificial</option>
+              <option>Legislação Acerca de Segurança da Informação e Proteção de Dados</option>
+              <option>Desenvolvimento de Sistemas</option>
+              <option>Inteligência de Negócios (BI)</option>
+              <option>Segurança da Informação</option>
+              <option>Banco de Dados</option>
+              <option>Gestão e Governança de TI</option>
+            </select>
           </div>
+          <div>
+            <label>Tópico / aula estudada</label>
+            <input type="text" id="fTopic" placeholder="ex: Proposição Lógica" required>
+          </div>
+          <div>
+            <label>Data do estudo</label>
+            <input type="date" id="fDate">
+          </div>
+          <div><button type="submit">Adicionar</button></div>
         </form>
       </div>
+
+      <div class="card">
+        <h2>Para revisar hoje <span class="badge" id="dueBadge">0</span></h2>
+        <div id="dueList"></div>
+      </div>
+
+      <div class="card">
+        <h2>Histórico de tópicos</h2>
+        <table id="historyTable">
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Matéria</th>
+              <th>Tópico</th>
+              <th>1d</th>
+              <th>3d</th>
+              <th>7d</th>
+              <th>15d</th>
+              <th>30d</th>
+              <th>45d</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="historyBody"></tbody>
+        </table>
+        <div class="empty" id="historyEmpty" style="display:none;">Nenhum tópico registrado ainda.</div>
+      </div>
+
+      <div class="rev-footer">
+        <button class="ghost" id="exportBtn">Exportar backup (.json)</button>
+        <label class="ghost"
+          style="display:inline-block;padding:10px 16px;border:1px solid var(--line);border-radius:4px;cursor:pointer;font-family:var(--mono);font-size:12px;">
+          Importar backup
+          <input type="file" id="importInput" accept=".json" style="display:none;">
+        </label>
+        <span class="status-msg" id="statusMsg"></span>
+      </div>
     </div>
 
-    <footer>
-      <p><b>Dica:</b> o bloco de exercícios de cada dia já foi pensado pra funcionar junto com a aba <b>Revisão Espaçada</b> — a parte de "conteúdo de hoje" fixa o que acabou de ser estudado, e a parte de revisão dá conta dos tópicos que venceram há 1, 3, 7, 15, 30 ou 45 dias, sem você precisar decorar quando revisar o quê.</p>
-      <p style="margin-top:8px;">Modelo semanal fixo — repete-se igual toda semana até a data da prova.</p>
-      <button class="print-btn" onclick="window.print()" style="float:none;margin-top:14px;">Imprimir / Salvar PDF</button>
-    </footer>
   </div>
 
-  <!-- ===================== TAB: REVISÃO ESPAÇADA ===================== -->
-  <div class="tab-panel" id="tab-revisao">
-
-    <div class="callout">
-      <h2>Revisão espaçada (1 / 3 / 7 / 15 / 30 / 45 dias)</h2>
-      <p>Registre aqui o que você estudou a cada dia. A ferramenta agenda sozinha as revisões em <b>1, 3, 7, 15, 30 e 45 dias</b> e te avisa o que revisar. Cada tópico é uma linha independente — assim dá pra misturar matérias diferentes no mesmo dia sem perder o controle. Os dados ficam salvos entre sessões enquanto o artefato estiver publicado; use o backup em .json como reforço.</p>
-    </div>
-
-    <div class="card">
-      <h2>Registrar estudo</h2>
-      <form id="addForm">
-        <div>
-          <label>Matéria</label>
-          <select id="fSubject">
-            <option>Língua Portuguesa</option>
-            <option>Raciocínio Lógico</option>
-            <option>Atualidades e Inteligência Artificial</option>
-            <option>Legislação Acerca de Segurança da Informação e Proteção de Dados</option>
-            <option>Desenvolvimento de Sistemas</option>
-            <option>Inteligência de Negócios (BI)</option>
-            <option>Segurança da Informação</option>
-            <option>Banco de Dados</option>
-            <option>Gestão e Governança de TI</option>
-          </select>
-        </div>
-        <div>
-          <label>Tópico / aula estudada</label>
-          <input type="text" id="fTopic" placeholder="ex: Proposição Lógica" required>
-        </div>
-        <div>
-          <label>Data do estudo</label>
-          <input type="date" id="fDate">
-        </div>
-        <div><button type="submit">Adicionar</button></div>
-      </form>
-    </div>
-
-    <div class="card">
-      <h2>Para revisar hoje <span class="badge" id="dueBadge">0</span></h2>
-      <div id="dueList"></div>
-    </div>
-
-    <div class="card">
-      <h2>Histórico de tópicos</h2>
-      <table id="historyTable">
-        <thead>
-          <tr><th>Data</th><th>Matéria</th><th>Tópico</th><th>1d</th><th>3d</th><th>7d</th><th>15d</th><th>30d</th><th>45d</th><th></th></tr>
-        </thead>
-        <tbody id="historyBody"></tbody>
-      </table>
-      <div class="empty" id="historyEmpty" style="display:none;">Nenhum tópico registrado ainda.</div>
-    </div>
-
-    <div class="rev-footer">
-      <button class="ghost" id="exportBtn">Exportar backup (.json)</button>
-      <label class="ghost" style="display:inline-block;padding:10px 16px;border:1px solid var(--line);border-radius:4px;cursor:pointer;font-family:var(--mono);font-size:12px;">
-        Importar backup
-        <input type="file" id="importInput" accept=".json" style="display:none;">
-      </label>
-      <span class="status-msg" id="statusMsg"></span>
-    </div>
-  </div>
-
-</div>
-
-<script type="module" src="plano_estudos.js"></script>
+  <script type="module" src="plano_estudos.js"></script>
 </body>
+
 </html>
