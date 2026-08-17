@@ -61,8 +61,111 @@
         </h2>
         
         <!-- Container onde a lista de matérias será renderizada pelo JS -->
-        <div id="lista-ciclo-leitura" style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
-          <p>Carregando rotina...</p>
+        <div id="lista-ciclo-leitura" style="margin-top: 16px;">
+          <div class="day-card">
+            <div class="day-head"><span class="day-name">Segunda-feira</span><span class="day-total">2h30 total</span></div>
+            <div class="day-body">
+              <div class="block study">
+                <div class="block-label">Estudo · 2h</div>
+                <div class="block-title" id="materia-estudo-segunda">Carregando...</div>
+              </div>
+              <div class="block exercise">
+                <div class="block-label">Exercícios · 30min</div>
+                <div class="block-title" id="materia-exercicio-segunda">Carregando...</div>
+                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="day-card">
+            <div class="day-head"><span class="day-name">Terça-feira</span><span class="day-total">2h30 total</span></div>
+            <div class="day-body">
+              <div class="block study">
+                <div class="block-label">Estudo · 2h</div>
+                <div class="block-title" id="materia-estudo-terca">Carregando...</div>
+              </div>
+              <div class="block exercise">
+                <div class="block-label">Exercícios · 30min</div>
+                <div class="block-title" id="materia-exercicio-terca">Carregando...</div>
+                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="day-card">
+            <div class="day-head"><span class="day-name">Quarta-feira</span><span class="day-total">2h30 total</span></div>
+            <div class="day-body">
+              <div class="block study">
+                <div class="block-label">Estudo · 2h</div>
+                <div class="block-title" id="materia-estudo-quarta">Carregando...</div>
+              </div>
+              <div class="block exercise">
+                <div class="block-label">Exercícios · 30min</div>
+                <div class="block-title" id="materia-exercicio-quarta">Carregando...</div>
+                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="day-card">
+            <div class="day-head"><span class="day-name">Quinta-feira</span><span class="day-total">2h30 total</span></div>
+            <div class="day-body">
+              <div class="block study">
+                <div class="block-label">Estudo · 1h + 1h</div>
+                <div class="block-title" id="materia-estudo-quinta">Carregando...</div>
+              </div>
+              <div class="block exercise">
+                <div class="block-label">Exercícios · 30min</div>
+                <div class="block-title" id="materia-exercicio-quinta">Carregando...</div>
+                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="day-card">
+            <div class="day-head"><span class="day-name">Sexta-feira</span><span class="day-total">2h30 total</span></div>
+            <div class="day-body">
+              <div class="block study">
+                <div class="block-label">Estudo · 1h20 + 40min</div>
+                <div class="block-title" id="materia-estudo-sexta">Carregando...</div>
+              </div>
+              <div class="block exercise">
+                <div class="block-label">Exercícios · 30min</div>
+                <div class="block-title" id="materia-exercicio-sexta">Carregando...</div>
+                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="day-card">
+            <div class="day-head"><span class="day-name">Sábado</span><span class="day-total">1h30 total</span></div>
+            <div class="day-body">
+              <div class="block study">
+                <div class="block-label">Estudo · 1h</div>
+                <div class="block-title" id="materia-estudo-sabado">Carregando...</div>
+              </div>
+              <div class="block exercise">
+                <div class="block-label">Exercícios · 30min</div>
+                <div class="block-title" id="materia-exercicio-sabado">Carregando...</div>
+                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="day-card sunday">
+            <div class="day-head"><span class="day-name">Domingo</span><span class="day-total">1h30 total</span></div>
+            <div class="day-body">
+              <div class="block study">
+                <div class="block-label">Estudo · 1h</div>
+                <div class="block-title" id="materia-estudo-domingo">Carregando...</div>
+              </div>
+              <div class="block exercise">
+                <div class="block-label">Exercícios · 30min</div>
+                <div class="block-title" id="materia-exercicio-domingo">Carregando...</div>
+                <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -105,112 +208,6 @@
             <button type="submit" id="btn-salvar-ciclo">Salvar Novo Ciclo</button>
           </div>
         </form>
-      </div>
-    </div>
-
-
-    <div class="day-card">
-      <div class="day-head"><span class="day-name">Segunda-feira</span><span class="day-total">2h30 total</span></div>
-      <div class="day-body">
-        <div class="block study">
-          <div class="block-label">Estudo · 2h</div>
-          <div class="block-title">Segurança da Informação</div>
-        </div>
-        <div class="block exercise">
-          <div class="block-label">Exercícios · 30min</div>
-          <div class="block-title">Questões de Segurança da Informação</div>
-          <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="day-head"><span class="day-name">Terça-feira</span><span class="day-total">2h30 total</span></div>
-      <div class="day-body">
-        <div class="block study">
-          <div class="block-label">Estudo · 2h</div>
-          <div class="block-title">Atualidades e Inteligência Artificial</div>
-        </div>
-        <div class="block exercise">
-          <div class="block-label">Exercícios · 30min</div>
-          <div class="block-title">Questões de Atualidades e IA</div>
-          <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="day-head"><span class="day-name">Quarta-feira</span><span class="day-total">2h30 total</span></div>
-      <div class="day-body">
-        <div class="block study">
-          <div class="block-label">Estudo · 2h</div>
-          <div class="block-title">Língua Portuguesa</div>
-        </div>
-        <div class="block exercise">
-          <div class="block-label">Exercícios · 30min</div>
-          <div class="block-title">Questões de Português</div>
-          <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="day-head"><span class="day-name">Quinta-feira</span><span class="day-total">2h30 total</span></div>
-      <div class="day-body">
-        <div class="block study">
-          <div class="block-label">Estudo · 1h + 1h</div>
-          <div class="block-title">Legislação de Segurança da Informação e Proteção de Dados <br>+ Gestão e Governança de TI</div>
-        </div>
-        <div class="block exercise">
-          <div class="block-label">Exercícios · 30min</div>
-          <div class="block-title">Questões de Legislação/Gestão e Governança</div>
-          <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="day-head"><span class="day-name">Sexta-feira</span><span class="day-total">2h30 total</span></div>
-      <div class="day-body">
-        <div class="block study">
-          <div class="block-label">Estudo · 1h20 + 40min</div>
-          <div class="block-title">Raciocínio Lógico <br>+ Inteligência de Negócios (BI)</div>
-        </div>
-        <div class="block exercise">
-          <div class="block-label">Exercícios · 30min</div>
-          <div class="block-title">Questões de Raciocínio Lógico/BI</div>
-          <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="day-head"><span class="day-name">Sábado</span><span class="day-total">1h30 total</span></div>
-      <div class="day-body">
-        <div class="block study">
-          <div class="block-label">Estudo · 1h</div>
-          <div class="block-title">Desenvolvimento de Sistemas</div>
-        </div>
-        <div class="block exercise">
-          <div class="block-label">Exercícios · 30min</div>
-          <div class="block-title">Questões de Desenvolvimento de Sistemas</div>
-          <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="day-card sunday">
-      <div class="day-head"><span class="day-name">Domingo</span><span class="day-total">1h30 total</span></div>
-      <div class="day-body">
-        <div class="block study">
-          <div class="block-label">Estudo · 1h</div>
-          <div class="block-title">Banco de Dados</div>
-        </div>
-        <div class="block exercise">
-          <div class="block-label">Exercícios · 30min</div>
-          <div class="block-title">Questões de Banco de Dados</div>
-          <div class="block-detail">15min questões do conteúdo de hoje + 15min resolvendo os itens pendentes/atrasados na aba Revisão Espaçada</div>
-        </div>
       </div>
     </div>
 

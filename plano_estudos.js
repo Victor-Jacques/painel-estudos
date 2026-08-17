@@ -308,21 +308,27 @@ window.carregarCicloSemanal = async function() {
     if (docSnap.exists()) {
       dadosCicloAtual = docSnap.data();
       
-      listaCicloLeitura.innerHTML = `
-        <div style="padding: 6px; border-bottom: 1px solid var(--line);"><strong>Segunda-feira:</strong> ${dadosCicloAtual.segundaFeira || '-'}</div>
-        <div style="padding: 6px; border-bottom: 1px solid var(--line);"><strong>Terça-feira:</strong> ${dadosCicloAtual.tercaFeira || '-'}</div>
-        <div style="padding: 6px; border-bottom: 1px solid var(--line);"><strong>Quarta-feira:</strong> ${dadosCicloAtual.quartaFeira || '-'}</div>
-        <div style="padding: 6px; border-bottom: 1px solid var(--line);"><strong>Quinta-feira:</strong> ${dadosCicloAtual.quintaFeira || '-'}</div>
-        <div style="padding: 6px; border-bottom: 1px solid var(--line);"><strong>Sexta-feira:</strong> ${dadosCicloAtual.sextaFeira || '-'}</div>
-        <div style="padding: 6px; border-bottom: 1px solid var(--line);"><strong>Sábado:</strong> ${dadosCicloAtual.sabado || '-'}</div>
-        <div style="padding: 6px;"><strong>Domingo:</strong> ${dadosCicloAtual.domingo || '-'}</div>
-      `;
+      const setMateria = (idEstudo, idExercicio, materia) => {
+        const elEstudo = document.getElementById(idEstudo);
+        const elExercicio = document.getElementById(idExercicio);
+        const matTexto = materia || '-';
+        if (elEstudo) elEstudo.textContent = matTexto;
+        if (elExercicio) elExercicio.textContent = "Questões de " + matTexto;
+      };
+
+      setMateria("materia-estudo-segunda", "materia-exercicio-segunda", dadosCicloAtual.segundaFeira);
+      setMateria("materia-estudo-terca", "materia-exercicio-terca", dadosCicloAtual.tercaFeira);
+      setMateria("materia-estudo-quarta", "materia-exercicio-quarta", dadosCicloAtual.quartaFeira);
+      setMateria("materia-estudo-quinta", "materia-exercicio-quinta", dadosCicloAtual.quintaFeira);
+      setMateria("materia-estudo-sexta", "materia-exercicio-sexta", dadosCicloAtual.sextaFeira);
+      setMateria("materia-estudo-sabado", "materia-exercicio-sabado", dadosCicloAtual.sabado);
+      setMateria("materia-estudo-domingo", "materia-exercicio-domingo", dadosCicloAtual.domingo);
+      
     } else {
-      listaCicloLeitura.innerHTML = "<p>Nenhum ciclo configurado encontrado no banco.</p>";
+      console.warn("Nenhum ciclo configurado encontrado no banco.");
     }
   } catch (error) {
     console.error("Erro ao carregar o ciclo semanal:", error);
-    listaCicloLeitura.innerHTML = "<p>Erro ao carregar o ciclo.</p>";
   }
 }
 
